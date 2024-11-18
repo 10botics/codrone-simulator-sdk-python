@@ -13,11 +13,6 @@ class Note(Enum):
     C7 = 2093.005; CS7 = 2217.461; D7 = 2349.318; DS7 = 2489.016; E7 = 2637.021; F7 = 2793.826; FS7 = 2959.956; G7 = 3135.964; GS7 = 3322.438; A7 = 3520.000; AS7 = 3729.310; B7 = 3951.066	
     C8 = 4186.009; CS8 = 4434.922; D8 = 4698.637; DS8 = 4978.032; E8 = 5274.042; F8 = 5587.652; FS8 = 5919.912; G8 = 6271.928; GS8 = 6644.876; A8 = 7040.000; AS8 = 7458.620; B8 = 7902.133
 
-    # EndOfType   = 0x60
-
-    # Mute        = 0xEE  # 묵음
-    # Fin         = 0xFF  # 악보의 끝
-
 class Drone():
     
     def __init__(self, is_synchronize = False):
@@ -52,34 +47,22 @@ class Drone():
     def land(self):
         self._send_to_server("land")
     
-    # def reset_trim(self):
-    #     return 
-    
-    # def set_trim(self):
-    #     return
-    
     def takeoff(self):
         self._send_to_server("takeoff")
         time.sleep(1)
-    
-    # def reset_sensor(self):
-    #     return
-    
-    # def stop_motors(self):
-    #     return
 
     def avoid_wall(self, timeout=2, distance=70):
-        self._send_to_server("avoid_wall," + str(timeout) + "," + str(distance))
+        self._send_to_server(f"avoid_wall,{timeout},{distance}")
         time.sleep(timeout)
     
     def detect_wall(self, distance=50):
-        return self._get_from_server("detect_wall," + str(distance), 1)[0] == b'\x01'
+        return self._get_from_server(f"detect_wall,{distance}", 1)[0] == b'\x01'
     
     def hover(self, duration=0.01):
         time.sleep(duration)
 
     def move(self, duration):
-        self._send_to_server("go," + str(self._roll) + "," + str(self._pitch) + "," + str(self._yaw) + "," + str(self._throttle) + "," + str(duration))
+        self._send_to_server(f"go,{self._roll},{self._pitch},{self._yaw},{self._throttle},{duration}")
         time.sleep(duration)
 
     def reset_move(self, attmepts):
@@ -101,31 +84,31 @@ class Drone():
         self._yaw = power
 
     def turn_left(self, degree=90, timeout=3):
-        self._send_to_server("turn_left," + str(degree) + "," + str(timeout))
+        self._send_to_server(f"turn_left,{degree},{timeout}")
         time.sleep(timeout)
 
     def turn_right(self, degree=90, timeout=3):
-        self._send_to_server("turn_right," + str(degree) + "," + str(timeout))
+        self._send_to_server(f"turn_right,{degree},{timeout}")
         time.sleep(timeout)
     
     def go(self, roll, pitch, yaw, throttle, duration):
-        self._send_to_server("go," + str(roll) + "," + str(pitch) + "," + str(yaw) + "," + str(throttle) + "," + str(duration))
+        self._send_to_server(f"go,{roll},{pitch},{yaw},{throttle},{duration}")
         time.sleep(duration)
 
     def move_forward(self, distance, unit="cm", speed=1):
-        self._send_to_server("move_forward," + str(distance) + "," + str(unit) + "," + str(speed))
+        self._send_to_server(f"move_forward,{distance},{unit},{speed}")
         time.sleep(0.001)
 
     def move_backward(self, distance, unit="cm", speed=1):
-        self._send_to_server("move_backward," + str(distance) + "," + str(unit) + "," + str(speed))
+        self._send_to_server(f"move_backward,{distance},{unit},{speed}")
         time.sleep(0.001)
     
     def move_left(self, distance, unit="cm", speed=1):
-        self._send_to_server("move_left," + str(distance) + "," + str(unit) + "," + str(speed))
+        self._send_to_server(f"move_left,{distance},{unit},{speed}")
         time.sleep(0.001)
     
     def move_right(self, distance, unit="cm", speed=1):
-        self._send_to_server("move_right," + str(distance) + "," + str(unit) + "," + str(speed))
+        self._send_to_server(f"move_right,{distance},{unit},{speed}")
         time.sleep(0.001)
 
     def drone_LED_off(self):
@@ -133,7 +116,7 @@ class Drone():
         time.sleep(0.005)
 
     def set_drone_LED(self, r, g, b, brightness):
-        self._send_to_server("set_drone_LED," + str(r) + "," + str(g) + "," + str(b) + "," + str(brightness))
+        self._send_to_server(f"set_drone_LED,{r},{g},{b},{brightness}")
         time.sleep(0.005)
 
     def drone_buzzer(self, note, duration):
@@ -145,7 +128,7 @@ class Drone():
         else:
             print("Input must be Note or integer.")
             return
-        self._send_to_server("start_drone_buzzer," + str(value))
+        self._send_to_server(f"start_drone_buzzer,{value},{duration}")
         time.sleep(duration/1000)
         self._send_to_server("end_drone_buzzer," + str(value))
     
@@ -158,20 +141,20 @@ class Drone():
         else:
             print("Input must be Note or integer.")
             return
-        self._send_to_server("start_drone_buzzer," + str(value))
+        self._send_to_server(f"start_drone_buzzer,{value}")
     
     def end_drone_buzzer(self):
         self._send_to_server("end_drone_buzzer,")
 
     def get_bottom_range(self, unit="cm"):
         import struct
-        result = self._get_from_server("get_bottom_range," + str(unit), 4)[0]
+        result = self._get_from_server(f"get_bottom_range,{unit}", 4)[0]
         [x] = struct.unpack('f', result)
         return x
     
     def get_front_range(self, unit="cm"):
         import struct
-        result = self._get_from_server("get_front_range," + str(unit), 4)[0]
+        result = self._get_from_server(f"get_front_range,{unit}", 4)[0]
         [x] = struct.unpack('f', result)
         return x
 
@@ -186,31 +169,35 @@ class Drone():
         self._send_to_server("release")
         time.sleep(1)
 
+    def reset_position_and_rotation(self):
+        self._send_to_server("reset_position_and_rotation")
+        time.sleep(0.02)
+
     #---------------------------------------
     # Custom API
     #---------------------------------------
     def teleport_to(self, x, y, z):
-        self._send_to_server("teleport_to," + str(x) + "," + str(y) + "," + str(z))
+        self._send_to_server(f"teleport_to,{x},{y},{z}")
         time.sleep(0.02)
 
     def teleport_by(self, x=0, y=0, z=0):
-        self._send_to_server("teleport_by," + str(x) + "," + str(y) + "," + str(z))
+        self._send_to_server(f"teleport_by,{x},{y},{z}")
         time.sleep(0.02)
 
     def teleport_yaw_to(self, yaw):
-        self._send_to_server("teleport_yaw_to," + str(yaw))
+        self._send_to_server(f"teleport_yaw_to,{yaw}")
         time.sleep(0.02)
 
     def teleport_yaw_by(self, yaw):
-        self._send_to_server("teleport_yaw_by," + str(yaw))
+        self._send_to_server(f"teleport_yaw_by,{yaw}")
         time.sleep(0.02)
 
     def set_restart_pos(self, x, z):
-        self._send_to_server("set_restart_pos," + str(x) + "," + str(z))
+        self._send_to_server(f"set_restart_pos,{x},{z}")
         time.sleep(0.02)
 
     def set_restart_yaw(self, yaw):
-        self._send_to_server("set_restart_yaw," + str(yaw))
+        self._send_to_server(f"set_restart_yaw,{yaw}")
         time.sleep(0.02)
 
     #---------------------------------------
