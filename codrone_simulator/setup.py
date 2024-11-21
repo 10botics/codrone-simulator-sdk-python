@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="codrone-simulator",  # Replace with your project name
-    version="0.2.6",  # Replace with your initial version
+    version="0.2.7",  # Replace with your initial version
     author="10boticsDev",  # Replace with your name
     author_email="mark.protusada@10botics.com",  # Replace with your email
     description="A Python package for simulating drone operations and learning drone programming in a virtual environment.",  # Short description
