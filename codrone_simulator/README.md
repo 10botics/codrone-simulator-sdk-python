@@ -16,5 +16,10 @@ Codrone Simulator is a Python package designed to simulate drone operations. It 
 
 To install the Codrone Simulator package, use pip:
 
+## After Package Install
+
+After installing, please follow this link to download the Drone Simulator:
+[Download Drone Simulator](https://github.com/10botics/codrone-simulator)
+
 ```bash
 pip install codrone-simulator

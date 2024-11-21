@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="codrone-simulator",  # Replace with your project name
-    version="0.2.2",  # Replace with your initial version
+    version="0.2.6",  # Replace with your initial version
     author="10boticsDev",  # Replace with your name
     author_email="mark.protusada@10botics.com",  # Replace with your email
     description="A Python package for simulating drone operations and learning drone programming in a virtual environment.",  # Short description
@@ -10,7 +10,7 @@ setup(
     long_description_content_type="text/markdown",  # Specify format of README
     project_urls={  # Custom project links
         "GitHub Repository": "https://github.com/10botics/codrone-simulator-sdk-python",
-        "Unity Project GitHub Repository": "https://github.com/10botics/codrone-simulator-unity",
+        "Drone Simulator Github": "https://github.com/10botics/codrone-simulator",
     },
     packages=find_packages(),  # Automatically find packages in the project
     classifiers=[

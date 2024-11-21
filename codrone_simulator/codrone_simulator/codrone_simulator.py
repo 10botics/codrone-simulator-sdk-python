@@ -173,6 +173,10 @@ class Drone():
         self._send_to_server("reset_position_and_rotation")
         time.sleep(0.02)
 
+    def send_message(self, message):
+        self._send_to_server(f"send_message,{message}")
+        time.sleep(0.02)
+
     #---------------------------------------
     # Custom API
     #---------------------------------------
