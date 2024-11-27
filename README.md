@@ -25,8 +25,8 @@ This Python script, `codrone_simulator.py`, serves as the interface for controll
 2. **Download the Drone Simulator**:
    - [Download the simulator](https://github.com/10botics/codrone-simulator) from the official repository.
 
-3. **Set Up the Drone Simulator**:
-   - Run the simulator executable.
+~~3. **Set Up the Drone Simulator**:
+   - Run the simulator executable.~~
 
 ---
 
