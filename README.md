@@ -11,35 +11,52 @@ This Python script, `codrone_simulator.py`, serves as the interface for controll
 - **Simulator Integration**: Communicates seamlessly with the drone simulator over a UDP connection.
 - **Extensive Notes Enum**: Defines musical notes for drone buzzer control, enabling creative sound outputs.
 
+## Getting Started
+Follow these steps to get started with the Drone Simulator:
+
+### Pre-requisites
+Before using the simulator, make sure you have the following installed:
+1. Python 3.6+: [Download Python](https://www.python.org/downloads/)
+2. Codrone Simulator Package: Install the package via pip through Windows CMD or MAC Terminal
+    ```bash
+    pip install codrone-simulator
+    ```
+![image](https://github.com/user-attachments/assets/1c6959f4-a0b8-456a-b108-b75fb3660a62)
+
+3. Installed VS Code or PyCharm: [Download VS Code](https://code.visualstudio.com/download) or [Download PyCharm](https://www.jetbrains.com/pycharm/download/)
+4. Install python extensions in VS Code or PyCharm
+    - VS Code: [Python Extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
+
+![image](https://github.com/user-attachments/assets/d4fcc94d-a63e-4a37-80b5-8ce558b66455)
+
+- PyCharm: [Pycharm Setup](https://learn.robolink.com/lesson/0-3-pycharm-installation-cde/)
+5. Download the Drone Simulator: [Download Latest](https://github.com/10botics/codrone-simulator/releases/latest)
+6. Download Hello World Drone Commands File: [HelloWorld python File](https://github.com/10botics/codrone-simulator/blob/main/HelloWorld.py)
 ---
+### Running Simulator
+1. Extract downloaded zip file to Desktop Folder
+2. Open extracted Folder
+3. Run the Drone.exe File
 
-## Installation
+![image](https://github.com/user-attachments/assets/3e4a8ec0-4c17-42ab-935a-66cef9b43cac)
 
-1. **Download and Install Dependencies**:
-   - Install Python (3.6+ is required).
-   - Install the Codrone Simulator package via pip:
-     ```bash
-     pip install codrone-simulator
-     ```
+4. Wait for the simulator to open
+5. Allow Firewall Access
 
-2. **Download the Drone Simulator**:
-   - [Download the simulator](https://github.com/10botics/codrone-simulator) from the official repository.
+![image](https://github.com/user-attachments/assets/12fbed66-ff86-4b30-aa56-14cc0cf57293)
 
-~~3. **Set Up the Drone Simulator**:
-   - Run the simulator executable.~~
+6. Select Free Play
+
+![image](https://github.com/user-attachments/assets/bd0d8d5d-c9a6-4a6d-bc5e-2bcafe4b1b20)
 
 ---
+### Test Hello World Python File to Move Drone
+1. Open the [HelloWorld python File](https://github.com/10botics/codrone-simulator/blob/main/HelloWorld.py) in either VS Code or PyCharm
+2. Make sure you see this window in the simulator
 
-## How to Use the Sample Python File
+![image](https://github.com/user-attachments/assets/8973434f-f91e-4903-a16a-b88c335b4e62)
 
-1. **Download the Sample File**:
-   - Download the sample Python file from the **Releases** tab in this repository.
-
-2. **Open the File**:
-   - Open the downloaded Python file using either **VS Code** or **PyCharm**.
-
-3. **Run the Script**:
-   - Ensure the drone simulator is running before executing the script.
+3. Run the Python File and watch your drone takeoff make noise and land
 ---
 
 ## Custom Drone Simulator API
